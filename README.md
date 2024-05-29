@@ -9,7 +9,7 @@ This guide provides step-by-step instructions to install CloudStack 4.17 on Ubun
 - Mochammad Shaffa | 2006528105
 - Muhammad Rizky Utomo | 2106731320
 
-### Home Network 192.168.104.25/24
+### Home Network 192.168.104.16/24
 
 ## Install ssh server and others tool if not yet present
 ```
@@ -53,7 +53,7 @@ network:
       optional: true
   bridges:
     cloudbr0:
-      addresses: [192.168.104.25/24]
+      addresses: [192.168.104.16/24]
       routes:
        - to: default
          via: 192.168.104.1
@@ -133,7 +133,7 @@ systemctl restart mysql
 
 ## Deploy database as root and then create cloud user with password cloud too
 ```
-cloudstack-setup-databases cloud:cloud@localhost --deploy-as=root:password -i 192.168.104.25
+cloudstack-setup-databases cloud:cloud@localhost --deploy-as=root:password -i 192.168.104.16
 ```
 
 ## Storage Setup
@@ -206,7 +206,7 @@ systemctl restart libvirtd
 ## Configure firewall (OPTIONAL)
 ### Configure iptables
 ```
-NETWORK=192.168.10.0/24
+NETWORK=192.168.104.0/24
 iptables -A INPUT -s $NETWORK -m state --state NEW -p udp --dport 111 -j ACCEPT
 iptables -A INPUT -s $NETWORK -m state --state NEW -p tcp --dport 111 -j ACCEPT
 iptables -A INPUT -s $NETWORK -m state --state NEW -p tcp --dport 2049 -j ACCEPT
@@ -246,28 +246,28 @@ systemctl status cloudstack-management
 tail -f /var/log/cloudstack/management/management-server.log
 ```
 
-### After management server is UP, proceed to http://192.168.104.25(i.e. the cloudbr0-IP):8080/client and log in using the default credentials - username admin and password password. Click continue installation to continue setting up your Apache Cloudstack. You will be setting up your Zone, Network, Pod, Cluster, Host, Primary Storage, and Secondary Storage
+### After management server is UP, proceed to http://192.168.104.16(i.e. the cloudbr0-IP):8080/client and log in using the default credentials - username admin and password password. Click continue installation to continue setting up your Apache Cloudstack. You will be setting up your Zone, Network, Pod, Cluster, Host, Primary Storage, and Secondary Storage
 
 ## Setup Zone
 ```
 Name - any name
 Public DNS 1 - 8.8.8.8
-Internal DNS1 - 192.168.10.1 [your router gateway]
+Internal DNS1 - 192.168.104.1 [your router gateway]
 Hypervisor - KVM
 ```
 ## Setup Network
 ```
-Gateway - 192.168.10.1
+Gateway - 192.168.104.1
 Netmask - 255.255.255.0
 VLAN/VNI - (leave blank for vlan://untagged or in case of VXLAN use vxlan://untagged)
-Start IP - 192.168.10.20
-End IP - 192.168.10.50
+Start IP - 192.168.104.20
+End IP - 192.168.104.50
 ```
 ## Pod Configuration
 ```
 Name - any name
-Gateway - 192.168.10.1
-Start/end reserved system IPs - 192.168.10.51 - 192.168.10.80
+Gateway - 192.168.104.1
+Start/end reserved system IPs - 192.168.104.51 - 192.168.104.80
 ```
 ## Guest Traffic
 ```
@@ -280,7 +280,7 @@ Hypervisor - Choose KVM
 ```
 ## Host
 ```
-Hostname - 192.168.1.10
+Hostname - 192.168.104.16
 Username - root
 Password - <password for root user, please enable root user ssh-access by password on the KVM host>
 ```
@@ -289,14 +289,14 @@ Password - <password for root user, please enable root user ssh-access by passwo
 Name - any name
 Scope - zone-wide
 Protocol - NFS
-Server - 192.168.10.22 [ubuntu server static ip]
+Server - 192.168.104.16 [ubuntu server static ip]
 Path - /export/primary
 ```
 ## Secondary Storage
 ```
 Provider - NFS
 Name - any name
-Server - 192.168.10.22 [ubuntu server static ip]
+Server - 192.168.104.16 [ubuntu server static ip]
 Path - /export/secondary
 ```
 ### After the configuration is done, go to Navigation>Infrastructure>Summary. Make sure that all of the components are already enabled. Now you can register the iso file you want or create a new instance. You can watch this video where i register iso and creating a new instance here https://youtu.be/ZuKOUTOAiVo 
