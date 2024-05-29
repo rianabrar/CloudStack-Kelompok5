@@ -56,7 +56,7 @@ network:
       addresses: [192.168.104.25/24]
       routes:
        - to: default
-         via: 192.168.10.1
+         via: 192.168.104.1
       nameservers:
         addresses: [1.1.1.1, 8.8.8.8]
       interfaces: [eno1]
