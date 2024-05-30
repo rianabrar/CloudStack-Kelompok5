@@ -1,7 +1,7 @@
 # CloudStack-Kelompok5
 This guide provides step-by-step instructions to install CloudStack 4.17 on Ubuntu 22.04.
 ## Apache CloudStack 4.18 installation on Ubuntu 22.04: 
-## Creating Instance: https://youtu.be/ZuKOUTOAiVo
+## Creating Instance: [LINK YOUTUBE]
 
 ## Installation Cloud Stack 4.17 on Ubuntu 22.04 Kelompok 2
 - Rian Abrar Makarim Lubis | 2106708242
