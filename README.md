@@ -1,7 +1,7 @@
 # CloudStack-Kelompok ACS E
 This guide provides step-by-step instructions to install CloudStack 4.17 on Ubuntu 20.04.
-## Apache CloudStack 4.18 installation on Ubuntu 20.04: 
-## Creating Instance: [LINK YOUTUBE]
+## Apache CloudStack 4.18 installation on Ubuntu 20.04: https://youtu.be/VDJ5MS4XVDA
+## Creating Instance: https://youtu.be/1nH11f2X0Xk
 
 ## Installation Cloud Stack 4.18 on Ubuntu 20.04 Kelompok ACS E
 - Rian Abrar Makarim Lubis | 2106708242
